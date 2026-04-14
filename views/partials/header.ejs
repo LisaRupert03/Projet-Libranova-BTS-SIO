@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title><%= typeof title !== 'undefined' ? title : 'LibraNova' %></title>
+
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+
+    <a class="navbar-brand" href="/">📚 LibraNova</a>
+
+    <div class="ms-auto">
+
+      <a href="/" class="nav-link d-inline">Accueil</a>
+      <a href="/books" class="nav-link d-inline">Livres</a>
+      <a href="/cart" class="nav-link d-inline">Panier</a>
+      <% if (user)  %>
+  <a href="/orders" class="nav-link d-inline">Mes commandes
+</a>
+      <a href="/contact" class="nav-link d-inline">Contact</a>
+      <a href="/reviews" class="nav-link d-inline">Avis</a>
+      <% if (user) { %>
+
+        <span class="nav-link d-inline">👤 <%= user.username %></span>
+
+        <% if (user.role === 'admin') { %>
+          <a href="/users" class="btn btn-sm">Administration</a>
+        <% } else { %>
+          <a href="/users/profile" class="btn btn-sm">Mon profil</a>
+        <% } %>
+
+        <a href="/logout" class="btn btn-sm">Déconnexion</a>
+
+      <% } else { %>
+
+        <a href="/login" class="btn btn-sm">Connexion</a>
+
+      <% } %>
+
+    </div>
+
+  </div>
+</nav>

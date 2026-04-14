@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+
+  <h1><%= book.titre %></h1>
+
+  <p><strong>Auteur :</strong> <%= book.auteur %></p>
+
+  <p><strong>Prix :</strong> <%= book.prix %> €</p>
+
+  <p><%= book.description %></p>
+
+  <a href="/books" class="btn btn-secondary">Retour</a>
+
+</div>
+
+<%- include('../partials/footer') %>

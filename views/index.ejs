@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<title><%= typeof title !== 'undefined' ? title : 'LibraNova' %></title>
+
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/style.css">
+
+<style>
+body{
+  background:#f8f5f2;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.hero img{
+  border-radius:20px;
+  height:300px;
+  object-fit:cover;
+  width:100%;
+  margin-bottom:20px;
+}
+
+/* CARDS */
+.card{
+  border:none;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,0.06);
+  transition:0.3s;
+  text-align:center;
+  padding:15px;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card img{
+  border-radius:12px;
+  height:200px;
+  object-fit:cover;
+  transition:0.3s;
+}
+
+.card:hover img{
+  transform:scale(1.05);
+}
+
+h1, h5{
+  color:#3e2c23;
+}
+</style>
+</head>
+
+<body>
+
+<%- include('partials/header'); %>
+
+<div class="container mt-5">
+
+<!-- HERO -->
+<div class="hero">
+  <img src="/images/hero.avif">
+  <h1>📚 LibraNova</h1>
+  <p class="text-muted">
+    Découvrez une sélection de livres dans un univers élégant et moderne
+  </p>
+  <a href="/books" class="btn mt-3">Explorer les livres</a>
+</div>
+
+<!-- CARDS -->
+<div class="row">
+
+<!-- 📚 Catalogue -->
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <img src="/images/catalogue.jpg">
+    <h5 class="mt-3">Catalogue</h5>
+    <p class="text-muted">Explorez tous nos livres</p>
+    <a href="/books" class="btn mt-2">Voir les livres</a>
+  </div>
+</div>
+
+<!-- 🛒 Panier -->
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <img src="/images/panier.jpg">
+    <h5 class="mt-3">Mon panier</h5>
+    <p class="text-muted">Gérez vos articles</p>
+    <a href="/cart" class="btn mt-2">Voir le panier</a>
+  </div>
+</div>
+
+<!-- 📦 Commandes -->
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <img src="/images/commandes.jpg">
+    <h5 class="mt-3">Mes commandes</h5>
+    <p class="text-muted">Suivez vos commandes</p>
+    <a href="/orders" class="btn mt-2">Voir mes commandes</a>
+  </div>
+</div>
+
+<!-- 👤 COMPTE / ADMIN -->
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <img src="/images/mon-compte.jpg">
+    <h5 class="mt-3">Mon espace</h5>
+    <p class="text-muted">Accédez à votre compte</p>
+
+    <% if (typeof user !== 'undefined' && user) { %>
+
+      <% if (user.role === 'admin') { %>
+        <a href="/users" class="btn mt-2">Administration</a>
+      <% } else { %>
+        <a href="/users/profile" class="btn mt-2">Mon profil</a>
+      <% } %>
+
+    <% } else { %>
+      <a href="/login" class="btn mt-2">Se connecter</a>
+    <% } %>
+
+  </div>
+</div>
+
+<!-- 📩 CONTACT -->
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <img src="/images/contact.png">
+    <h5 class="mt-3">Contact</h5>
+    <p class="text-muted">Une question ? Contactez-nous</p>
+    <a href="/contact" class="btn mt-2">Contactez-nous</a>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+<%- include('partials/footer'); %>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || 'Modifier utilisateur - LibraNova' %></title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+<%- include('../partials/header'); %>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Modifier utilisateur</h1>
+
+  <form id="editUserForm">
+    
+    <div class="mb-3">
+      <label class="form-label">Nom d'utilisateur</label>
+      <input type="text" name="username" class="form-control" value="<%= user.username %>" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <input type="text" name="nom" class="form-control" value="<%= user.nom || '' %>">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Prénom</label>
+      <input type="text" name="prenom" class="form-control" value="<%= user.prenom || '' %>">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" value="<%= user.email %>" required>
+    </div>
+
+    <!-- 🔥 ROLE CORRIGÉ -->
+    <div class="mb-3">
+      <label class="form-label">Rôle</label>
+      <select name="role" class="form-select">
+        <option value="client" <%= user.role === 'client' ? 'selected' : '' %>>Client</option>
+        <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>Administrateur</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Statut</label>
+      <select name="status" class="form-select">
+        <option value="active" <%= user.status === 'active' ? 'selected' : '' %>>Actif</option>
+        <option value="inactive" <%= user.status === 'inactive' ? 'selected' : '' %>>Inactif</option>
+        <option value="banned" <%= user.status === 'banned' ? 'selected' : '' %>>Banni</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Téléphone</label>
+      <input type="text" name="phone" class="form-control" value="<%= user.phone || '' %>">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Adresse</label>
+      <input type="text" name="adresse" class="form-control" value="<%= user.adresse || '' %>">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    <a href="/users" class="btn btn-secondary">Annuler</a>
+
+  </form>
+</div>
+
+<script>
+const form = document.getElementById('editUserForm');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = Object.fromEntries(new FormData(form).entries());
+
+  try {
+    const response = await fetch('/api/users/<%= user.id %>', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+
+    if (data.success || data.message) {
+      alert('✅ Utilisateur mis à jour !');
+      window.location.href = '/users';
+    } else {
+      alert('❌ ' + (data.message || 'Erreur'));
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert('Erreur serveur');
+  }
+});
+</script>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <title><%= typeof title !== 'undefined' ? title : 'Utilisateurs - LibraNova' %></title>
+
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+<%- include('../partials/header'); %>
+
+<div class="container mt-5">
+
+  <h1 class="mb-4">
+    <%= typeof title !== 'undefined' ? title : 'Gestion des utilisateurs' %>
+  </h1>
+
+  <a href="/users/ajouter" class="btn mb-3">
+    ➕ Ajouter un utilisateur
+  </a>
+
+  <table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Statut</th>
+        <th>Téléphone</th>
+        <th>Adresse</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% if (users && users.length > 0) { %>
+
+        <% users.forEach(user => { %>
+          <tr>
+            <td><%= user.nom || '' %></td>
+            <td><%= user.prenom || '' %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td><%= user.status || '' %></td>
+            <td><%= user.phone || '' %></td>
+            <td><%= user.adresse || '' %></td>
+
+            <td>
+              <a href="/users/edit/<%= user.id %>" class="btn btn-sm">
+                ✏️ Modifier
+              </a>
+
+              <a href="/users/delete/<%= user.id %>"
+                 class="btn btn-sm"
+                 onclick="return confirm('Voulez-vous supprimer cet utilisateur ?')">
+                ❌ Supprimer
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+
+      <% } else { %>
+
+        <tr>
+          <td colspan="8" class="text-center">
+            Aucun utilisateur trouvé
+          </td>
+        </tr>
+
+      <% } %>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

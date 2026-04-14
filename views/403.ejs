@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accès interdit - LibraNova</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+<%- include('partials/header'); %>
+
+<div class="container mt-5 text-center">
+  <div class="alert alert-danger p-4">
+
+    <h1>⛔ Accès interdit</h1>
+
+    <p class="fs-5">
+      Vous n’avez pas les droits nécessaires pour accéder à cette page.
+    </p>
+
+    <p>
+      Cette section est réservée aux administrateurs.
+    </p>
+
+    <% if (!user) { %>
+      <a href="/login" class="btn btn-warning mt-3">
+        Se connecter
+      </a>
+    <% } %>
+
+    <a href="/" class="btn btn-primary mt-3">
+      Retour à l’accueil
+    </a>
+
+  </div>
+</div>
+
+<%- include('partials/footer'); %>
+
+</body>
+</html>

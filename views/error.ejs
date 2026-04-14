@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Erreur - LibraNova</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<%- include('partials/header'); %>
+
+<div class="container mt-5 text-center">
+
+  <div class="alert alert-danger p-4">
+
+    <h1>⚠️ Une erreur est survenue</h1>
+
+    <p class="fs-5">
+      Désolé, une erreur s'est produite sur le serveur.
+    </p>
+
+    <% if (error && error.status) { %>
+      <p>Code erreur : <strong><%= error.status %></strong></p>
+    <% } %>
+
+    <% if (process.env.NODE_ENV === 'development') { %>
+      <div class="mt-3 text-start">
+        <pre><%= error.stack %></pre>
+      </div>
+    <% } %>
+
+    <a href="/" class="btn btn-primary mt-3">
+      Retour à l’accueil
+    </a>
+
+  </div>
+
+</div>
+
+<%- include('partials/footer'); %>
+
+</body>
+</html>

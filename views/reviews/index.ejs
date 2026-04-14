@@ -1,0 +1,74 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+
+  <h2 class="mb-4">⭐ Avis clients</h2>
+
+  <!-- FORMULAIRE -->
+  <% if (user) { %>
+
+    <form action="/reviews/add" method="POST" class="mb-4">
+
+      <div class="mb-3">
+        <label>Note :</label>
+        <select name="rating" class="form-control" required>
+          <option value="">Choisir</option>
+          <option value="1">⭐ 1</option>
+          <option value="2">⭐⭐ 2</option>
+          <option value="3">⭐⭐⭐ 3</option>
+          <option value="4">⭐⭐⭐⭐ 4</option>
+          <option value="5">⭐⭐⭐⭐⭐ 5</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>Commentaire :</label>
+        <textarea name="comment" class="form-control" required></textarea>
+      </div>
+
+      <button class="btn btn-primary">Envoyer</button>
+
+    </form>
+
+  <% } else { %>
+
+    <p>Connectez-vous pour laisser un avis</p>
+
+  <% } %>
+
+  <hr>
+
+  <!-- LISTE AVIS -->
+  <% if (reviews.length > 0) { %>
+
+    <% reviews.forEach(review => { %>
+
+      <div class="card mb-3 p-3">
+
+        <strong><%= review.userEmail %></strong>
+
+        <p>
+          <% for(let i = 0; i < review.rating; i++) { %>
+            ⭐
+          <% } %>
+        </p>
+
+        <p><%= review.commentaire %></p>
+
+        <small class="text-muted">
+          <%= new Date(review.createdAt).toLocaleString() %>
+        </small>
+
+      </div>
+
+    <% }) %>
+
+  <% } else { %>
+
+    <p>Aucun avis pour le moment</p>
+
+  <% } %>
+
+</div>
+
+<%- include('../partials/footer') %>

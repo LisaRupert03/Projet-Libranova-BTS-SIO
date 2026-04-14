@@ -1,0 +1,74 @@
+/* 🌍 GLOBAL */
+body {
+  background-color: #f8f5f2;
+  font-family: 'Segoe UI', sans-serif;
+  color: #3e2c23;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #3e2c23 !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #f5e6d3 !important;
+  margin-right: 10px;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #ede0d4, #f8f5f2);
+  padding: 60px;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* CARDS */
+.card {
+  border: none;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+  padding: 20px;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+/* TITRES */
+h1, h2, h3, h4 {
+  color: #3e2c23;
+}
+
+/* 🔥 BOUTONS UNIFIÉS */
+.btn {
+  background-color: #6b4f3b !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  background-color: #5a4030 !important;
+}
+
+/* FOOTER */
+footer {
+  background-color: #3e2c23;
+  color: #f5e6d3;
+}

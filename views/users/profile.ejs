@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+
+  <div class="hero">
+    <h1>👤 Mon profil</h1>
+    <p class="text-muted">Bienvenue sur votre espace personnel</p>
+  </div>
+
+  <div class="card p-4 mx-auto" style="max-width:500px;">
+
+    <div class="text-center mb-4">
+      <img src="/images/mon-compte.jpg"
+           style="width:120px;height:120px;object-fit:cover;border-radius:50%;">
+    </div>
+
+    <p><strong>Nom :</strong> <%= user.username %></p>
+    <p><strong>Email :</strong> <%= user.email %></p>
+    <p><strong>Rôle :</strong> <%= user.role %></p>
+
+    <a href="/" class="btn w-100 mt-3">Retour accueil</a>
+
+  </div>
+
+</div>
+
+<%- include('../partials/footer') %>

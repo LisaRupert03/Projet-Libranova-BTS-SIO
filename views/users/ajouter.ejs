@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un utilisateur - LibraNova</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+<%- include('../partials/header'); %>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Ajouter un utilisateur</h1>
+
+  <form id="ajouterForm">
+    <div class="row">
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nom d'utilisateur</label>
+        <input type="text" name="username" class="form-control" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Mot de passe</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+
+      <!-- 🔥 ROLE ADAPTÉ -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Rôle</label>
+        <select name="role" class="form-select">
+          <option value="client">Client</option>
+          <option value="admin">Administrateur</option>
+        </select>
+      </div>
+
+      <!-- STATUT OK -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Statut</label>
+        <select name="status" class="form-select">
+          <option value="active">Actif</option>
+          <option value="inactive">Inactif</option>
+          <option value="banned">Banni</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nom</label>
+        <input type="text" name="nom" class="form-control">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Prénom</label>
+        <input type="text" name="prenom" class="form-control">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Téléphone</label>
+        <input type="text" name="phone" class="form-control">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Adresse</label>
+        <input type="text" name="adresse" class="form-control">
+      </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-success">Créer l’utilisateur</button>
+    <a href="/users" class="btn btn-secondary ms-2">Annuler</a>
+  </form>
+</div>
+
+<script>
+document.getElementById('ajouterForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = Object.fromEntries(new FormData(e.target).entries());
+
+  try {
+    const res = await fetch('/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert('✅ Utilisateur ajouté !');
+      window.location.href = '/users';
+    } else {
+      alert('❌ ' + (data.message || 'Erreur serveur'));
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert('Erreur réseau');
+  }
+});
+</script>
+
+<%- include('../partials/footer'); %>
+
+</body>
+</html>

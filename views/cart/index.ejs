@@ -1,0 +1,59 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+
+  <h2 class="mb-4">🛒 Mon panier</h2>
+
+  <% if (cart.length > 0) { %>
+
+    <table class="table">
+
+      <thead>
+        <tr>
+          <th>Livre</th>
+          <th>Prix</th>
+          <th>Quantité</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% cart.forEach(item => { %>
+          <tr>
+            <td><%= item.titre %></td>
+            <td><%= item.prix %> €</td>
+            <td><%= item.quantity %></td>
+            <td><%= item.prix * item.quantity %> €</td>
+          </tr>
+        <% }) %>
+      </tbody>
+
+    </table>
+
+    <h4>Total : <%= total %> €</h4>
+
+    <!-- 🔥 BOUTON VALIDER -->
+    <form action="/cart/checkout" method="POST">
+      <button class="btn btn-success mt-3">
+        Valider mon panier
+      </button>
+    </form>
+
+    <!-- CONTINUER -->
+    <a href="/books" class="btn btn-secondary mt-3">
+      Continuer mes achats
+    </a>
+
+  <% } else { %>
+
+    <p>Votre panier est vide</p>
+
+    <a href="/books" class="btn btn-primary">
+      Voir les livres
+    </a>
+
+  <% } %>
+
+</div>
+
+<%- include('../partials/footer') %>

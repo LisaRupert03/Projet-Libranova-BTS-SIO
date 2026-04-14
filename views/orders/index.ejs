@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mes commandes</title>
+
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+
+  <h1>Mes commandes</h1>
+
+  <% orders.forEach(order => { %>
+
+    <div class="card p-4 mb-4">
+
+      <h5>Commande : <%= order.numero %></h5>
+
+      <p>
+        <strong>Date :</strong>
+        <%= new Date(order.createdAt).toLocaleString() %>
+      </p>
+
+      <p>
+        <strong>Statut :</strong>
+        <span class="badge bg-warning text-dark">
+          <%= order.status %>
+        </span>
+      </p>
+
+      <hr>
+
+      <% if (order.items && order.items.length > 0) { %>
+
+  <% order.items.forEach(item => { %>
+    <p>
+      📚 <%= item.titre %>  
+      x <%= item.quantity %>  
+      - <%= item.prix %> €
+    </p>
+  <% }) %>
+
+<% } else { %>
+
+  <p>Aucun produit</p>
+
+<% } %>
+
+      <hr>
+
+      <h5>Total : <%= order.total %> €</h5>
+
+    </div>
+
+  <% }) %>
+
+</div>
+
+<%- include('../partials/footer') %>
+
+</body>
+</html>
