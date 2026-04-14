@@ -26,5 +26,16 @@ npm install
 3. Lancer le serveur :
 npm start
 
+## Connexion au Site 
+1. Administrateur :
+   
+   mail : admin@test.com
+   mdp : 123456789
+
+2. Client
+
+   mail: client@test.com (client1 - client10)
+   mdp : 123456789
+   
 ## Auteur
 Lisa Rupert
