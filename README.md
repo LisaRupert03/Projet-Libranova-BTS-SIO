@@ -18,7 +18,7 @@ Application web développée avec Node.js, Express et MySQL.
 ## Installation
 
 1. Cloner le projet :
-git clone [https://github.com/LisaRupert03/projet1-bts-sio]
+git clone [https://github.com/LisaRupert03/Projet-Libranova-BTS-SIO]
 
 2. Installer les dépendances :
 npm install
